@@ -1,6 +1,5 @@
 #include "chip8.hh"
 
-int main()
+Chip8::Chip8()
 {
-  return 0;
 }
