@@ -3,3 +3,11 @@
 Chip8::Chip8()
 {
 }
+
+Chip8::~Chip8()
+{
+}
+
+void load_rom(Rom& r)
+{
+}
