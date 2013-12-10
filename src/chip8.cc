@@ -8,6 +8,11 @@ Chip8::~Chip8()
 {
 }
 
-void load_rom(Rom& r)
+void Chip8::load_from_rom(Rom& r)
 {
+  int i = 0x200;
+  rom_ = &r;
+
+  while (r >> memory_[i])
+    ++i;
 }

@@ -9,7 +9,11 @@ public:
   Chip8();
   ~Chip8();
 
-  void load_rom(Rom& r);
+  void load_from_rom(Rom& r);
+private:
+  unsigned char memory_[4096];
+
+  Rom* rom_;
 };
 
 #endif //!CHIP_8_HH
