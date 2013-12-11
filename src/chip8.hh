@@ -18,10 +18,15 @@ public:
   void load_from_rom(Rom& r);
 private:
   unsigned short opcode_;
-  std::vector<unsigned char> memory_;
-  std::vector<unsigned char> V_;
   unsigned short I_;
   unsigned short pc_;
+
+  // Timer
+  unsigned char delay_timer_;
+  unsigned char sound_timer_;
+
+  std::vector<unsigned char> memory_;
+  std::vector<unsigned char> V_;
 
   Rom* rom_;
 };
