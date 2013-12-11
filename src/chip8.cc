@@ -47,6 +47,18 @@ void Chip8::emulate()
 {
   opcode_ = memory_[pc_] << 8 | memory_[pc_ + 1];
   pc_ += 2;
+
+  // Timer
+  if(delay_timer_ > 0)
+    --delay_timer_;
+
+  if(sound_timer_ > 0)
+  {
+    if(sound_timer_ == 1)
+      make_beep_();
+
+    --sound_timer_;
+  }
 }
 
 void Chip8::load_from_rom(Rom& r)
@@ -56,4 +68,9 @@ void Chip8::load_from_rom(Rom& r)
 
   while (r >> memory_[i])
     ++i;
+}
+
+void Chip8::make_beep_()
+{
+  std::cout << "\a" << std::endl;
 }

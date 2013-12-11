@@ -1,6 +1,7 @@
 #ifndef CHIP_8_HH
 # define CHIP_8_HH
 
+# include <iostream>
 # include <vector>
 # include "rom.hh"
 
@@ -17,6 +18,8 @@ public:
   void emulate();
   void load_from_rom(Rom& r);
 private:
+  void make_beep_();
+
   unsigned short opcode_;
   unsigned short I_;
   unsigned short pc_;
