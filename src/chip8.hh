@@ -1,6 +1,7 @@
 #ifndef CHIP_8_HH
 # define CHIP_8_HH
 
+# include <vector>
 # include "rom.hh"
 
 class Chip8
@@ -17,8 +18,8 @@ public:
   void load_from_rom(Rom& r);
 private:
   unsigned short opcode_;
-  unsigned char memory_[kmemory_size];
-  unsigned char V_[knb_register];
+  std::vector<unsigned char> memory_;
+  std::vector<unsigned char> V_;
   unsigned short I_;
   unsigned short pc_;
 
