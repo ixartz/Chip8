@@ -13,16 +13,6 @@ void error_callback(int __attribute__((__unused__)) error, const char* descripti
   fputs(description, stderr);
 }
 
-static void key_callback(GLFWwindow* window,
-                         int key,
-                         int __attribute__((__unused__)) scancode,
-                         int action,
-                         int __attribute__((__unused__)) mods)
-{
-  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, GL_TRUE);
-}
-
 int main()
 {
   GLFWwindow* window;
@@ -42,7 +32,7 @@ int main()
 
   glfwMakeContextCurrent(window);
 
-  glfwSetKeyCallback(window, key_callback);
+  //glfwSetKeyCallback(window, key_callback);
 
   while (!glfwWindowShouldClose(window))
   {
