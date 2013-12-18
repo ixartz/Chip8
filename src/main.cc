@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "chip8.hh"
+#include "keyboard.hh"
 
 void error_callback(int __attribute__((__unused__)) error, const char* description)
 {
@@ -32,7 +33,7 @@ int main()
 
   glfwMakeContextCurrent(window);
 
-  //glfwSetKeyCallback(window, key_callback);
+  glfwSetKeyCallback(window, Keyboard::key_callback);
 
   while (!glfwWindowShouldClose(window))
   {
