@@ -6,6 +6,7 @@
 #endif
 
 #include <iostream>
+#include "screen.hh"
 #include "chip8.hh"
 #include "keyboard.hh"
 
