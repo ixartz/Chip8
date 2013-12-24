@@ -52,6 +52,9 @@ void Chip8::emulate()
   pc_ += 2;
 
   NNN_ = opcode_ & 0x0FFF;
+  NN_ = opcode_ & 0x00FF;
+  X_ = opcode_ & 0x0F00;
+  X_ = opcode_ & 0x00F0;
 
   switch (opcode_ & 0xF000)
   {
@@ -75,10 +78,16 @@ void Chip8::emulate()
       pc_ = NNN_;
       break;
     case 0x3000:
+      if (V_[X_] == NN_)
+        pc_ += 2;
       break;
     case 0x4000:
+      if (V_[X_] != NN_)
+        pc_ += 2;
       break;
     case 0x5000:
+      if (V_[X_] == V_[Y_])
+        pc_ += 2;
       break;
     case 0x6000:
       break;
@@ -87,6 +96,8 @@ void Chip8::emulate()
     case 0x8000:
       break;
     case 0x9000:
+      if (V_[X_] != V_[Y_])
+        pc_ += 2;
       break;
     case 0xA000:
       break;

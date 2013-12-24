@@ -28,6 +28,9 @@ private:
 
   // Deduce from opcode_
   unsigned short NNN_;
+  unsigned char NN_;
+  unsigned char X_;
+  unsigned char Y_;
 
   // Timer
   unsigned char delay_timer_;
