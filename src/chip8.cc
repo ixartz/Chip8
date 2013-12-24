@@ -25,6 +25,9 @@ void Chip8::init()
   for (int i = 0; i < knb_register; ++i)
     V_[i] = 0;
 
+  while (!stack_.empty())
+    stack_.pop();
+
   memory_[0] = 0xF0; memory_[1] = 0x90; memory_[2] = 0x90; memory_[3] = 0x90; memory_[4] = 0xF0;
   memory_[5] = 0x20; memory_[6] = 0x60; memory_[7] = 0x20; memory_[8] = 0x20; memory_[9] = 0x70;
   memory_[10] = 0xF0; memory_[11] = 0x10; memory_[12] = 0xF0; memory_[13] = 0x80; memory_[14] = 0xF0;
@@ -47,6 +50,58 @@ void Chip8::emulate()
 {
   opcode_ = memory_[pc_] << 8 | memory_[pc_ + 1];
   pc_ += 2;
+
+  NNN_ = opcode_ & 0x0FFF;
+
+  switch (opcode_ & 0xF000)
+  {
+    case 0x0000:
+      switch (opcode_ & 0x00FF)
+      {
+        case 0x00E0:
+          screen_.clean();
+          break;
+        case 0x00EE:
+          pc_ = stack_.top();
+          stack_.pop();
+          break;
+      }
+      break;
+    case 0x1000:
+      pc_ = NNN_;
+      break;
+    case 0x2000:
+      stack_.push(pc_);
+      pc_ = NNN_;
+      break;
+    case 0x3000:
+      break;
+    case 0x4000:
+      break;
+    case 0x5000:
+      break;
+    case 0x6000:
+      break;
+    case 0x7000:
+      break;
+    case 0x8000:
+      break;
+    case 0x9000:
+      break;
+    case 0xA000:
+      break;
+    case 0xB000:
+      pc_ = NNN_ + V_[0];
+      break;
+    case 0xC000:
+      break;
+    case 0xD000:
+      break;
+    case 0xE000:
+      break;
+    case 0xF000:
+      break;
+  }
 
   // Timer
   if(delay_timer_ > 0)

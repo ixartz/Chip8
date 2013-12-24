@@ -3,6 +3,8 @@
 
 # include <iostream>
 # include <vector>
+# include <stack>
+# include "screen.hh"
 # include "rom.hh"
 
 class Chip8
@@ -22,7 +24,10 @@ private:
 
   unsigned short opcode_;
   unsigned short I_;
-  unsigned short pc_;
+  unsigned short pc_; // program counter
+
+  // Deduce from opcode_
+  unsigned short NNN_;
 
   // Timer
   unsigned char delay_timer_;
@@ -30,7 +35,9 @@ private:
 
   std::vector<unsigned char> memory_;
   std::vector<unsigned char> V_;
+  std::stack<unsigned char> stack_;
 
+  Screen screen_;
   Rom* rom_;
 };
 

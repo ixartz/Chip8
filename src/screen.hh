@@ -13,6 +13,7 @@ public:
 
   Screen();
   ~Screen();
+  void clean();
   unsigned char& operator()(int x, int y);
 private:
   std::vector<unsigned char> buffer_;
