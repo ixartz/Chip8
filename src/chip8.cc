@@ -177,6 +177,43 @@ void Chip8::emulate()
       }
       break;
     case 0xF000:
+      switch (NN_)
+      {
+        case 0x0007:
+          V_[X_] = delay_timer_;
+          break;
+        case 0x000A:
+          break;
+        case 0x0015:
+          delay_timer_ = V_[X_];
+          break;
+        case 0x0018:
+          sound_timer_ = V_[X_];
+          break;
+        case 0x001E:
+          I_ += V_[X_];
+          break;
+        case 0x0029:
+          I_ = V_[X_] * 5;
+          break;
+        case 0x0033:
+          memory_[I_] = V_[X_] / 100;
+          memory_[I_ + 1] = V_[X_] / 10 % 10;
+          memory_[I_ + 2] = V_[X_] % 10;
+          break;
+        case 0x0055:
+          for (int i = 0; i <= X_; ++i)
+          {
+            memory_[I_ + i] = V_[i];
+          }
+          break;
+        case 0x0065:
+          for (int i = 0; i <= X_; ++i)
+          {
+            V_[i] = memory_[I_ + i];
+          }
+          break;
+      }
       break;
   }
 
