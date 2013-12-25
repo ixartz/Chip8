@@ -90,16 +90,60 @@ void Chip8::emulate()
         pc_ += 2;
       break;
     case 0x6000:
+      V_[X_] = NN_;
       break;
     case 0x7000:
+      V_[X_] += NN_;
       break;
     case 0x8000:
+      switch (opcode_ & 0x000F)
+      {
+        case 0x0000:
+          V_[X_] = V_[Y_];
+          break;
+        case 0x0001:
+          V_[X_] |= V_[Y_];
+          break;
+        case 0x0002:
+          V_[X_] &= V_[Y_];
+          break;
+        case 0x0003:
+          V_[X_] ^= V_[Y_];
+          break;
+        case 0x0004:
+        {
+          // Carry flag
+          unsigned short sum = V_[X_] + V_[Y_];
+          V_[0xF] = sum > 255;
+
+          V_[X_] = sum & 0xFF;
+          break;
+        }
+        case 0x0005:
+          V_[0xF] = V_[X_] > V_[Y_];
+
+          V_[X_] -= V_[Y_];
+          break;
+        case 0x0006:
+          V_[0xF] = V_[X_] & 0x01;
+          V_[X_] >>= 1;
+          break;
+        case 0x0007:
+          V_[0xF] = V_[Y_] > V_[X_];
+          V_[X_] = V_[Y_] - V_[X_];
+          break;
+        case 0x000E:
+          V_[0xF] = (V_[X_] & 0x80) >> 7;
+          V_[X_] <<= 1;
+          break;
+      }
       break;
     case 0x9000:
       if (V_[X_] != V_[Y_])
         pc_ += 2;
       break;
     case 0xA000:
+      I_ = NNN_;
       break;
     case 0xB000:
       pc_ = NNN_ + V_[0];
