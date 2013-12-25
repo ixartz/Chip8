@@ -8,6 +8,7 @@
 class Rom
 {
 public:
+  Rom();
   Rom(std::string& filename);
   ~Rom();
   std::istream& operator>>(unsigned char& c);

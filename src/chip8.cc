@@ -162,6 +162,27 @@ void Chip8::emulate()
       V_[X_] = rand() & NN_;
       break;
     case 0xD000:
+      unsigned char line;
+
+      V_[0xF] = 0;
+
+      for (int j = 0; j < N_; ++j)
+      {
+        line = memory_[I_ + j];
+
+        for (int i = 0; i < 8; ++i)
+        {
+          if ((line & 0x80) > 0)
+          {
+            if (screen_(V_[X_] + i, V_[Y_] + j) > 0)
+              V_[0xF] = 1;
+
+            screen_(V_[X_] + i, V_[Y_] + j) ^= 1;
+          }
+
+          line <<= 1;
+        }
+      }
       break;
     case 0xE000:
       switch (NN_)

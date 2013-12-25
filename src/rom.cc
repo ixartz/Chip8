@@ -1,5 +1,9 @@
 #include "rom.hh"
 
+Rom::Rom()
+{
+}
+
 Rom::Rom(std::string& filename)
   : filename_(filename)
 {
