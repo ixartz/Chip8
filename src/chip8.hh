@@ -4,6 +4,7 @@
 # include <iostream>
 # include <vector>
 # include <stack>
+# include "keyboard.hh"
 # include "screen.hh"
 # include "rom.hh"
 
@@ -29,6 +30,7 @@ private:
   // Deduce from opcode_
   unsigned short NNN_;
   unsigned char NN_;
+  unsigned char N_;
   unsigned char X_;
   unsigned char Y_;
 

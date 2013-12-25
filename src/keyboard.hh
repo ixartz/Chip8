@@ -14,8 +14,10 @@ public:
                            int scancode,
                            int action,
                            int mods);
+
+  static bool is_pressed(int key);
 private:
-  static std::vector<int> input_;
+  static std::vector<bool> input_;
 };
 
 #endif //!KEYBOARD_HH

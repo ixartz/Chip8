@@ -53,13 +53,14 @@ void Chip8::emulate()
 
   NNN_ = opcode_ & 0x0FFF;
   NN_ = opcode_ & 0x00FF;
+  N_ = opcode_ & 0x000F;
   X_ = opcode_ & 0x0F00;
   X_ = opcode_ & 0x00F0;
 
   switch (opcode_ & 0xF000)
   {
     case 0x0000:
-      switch (opcode_ & 0x00FF)
+      switch (NN_)
       {
         case 0x00E0:
           screen_.clean();
@@ -69,6 +70,10 @@ void Chip8::emulate()
           stack_.pop();
           break;
       }
+      /*
+       * The 0NNN instruction is deprecated.
+       * So, it is not implemented.
+       */
       break;
     case 0x1000:
       pc_ = NNN_;
@@ -96,7 +101,7 @@ void Chip8::emulate()
       V_[X_] += NN_;
       break;
     case 0x8000:
-      switch (opcode_ & 0x000F)
+      switch (N_)
       {
         case 0x0000:
           V_[X_] = V_[Y_];
@@ -149,10 +154,27 @@ void Chip8::emulate()
       pc_ = NNN_ + V_[0];
       break;
     case 0xC000:
+      /*
+       * It is useless to choose a random value between 0 and 255
+       * because we do a AND operation with the byte mask (NN_, a 16-bit)
+       * in the target register. So, the result will automatically between 0 and 255.
+       */
+      V_[X_] = rand() & NN_;
       break;
     case 0xD000:
       break;
     case 0xE000:
+      switch (NN_)
+      {
+        case 0x009E:
+          if (Keyboard::is_pressed(V_[X_]))
+            pc_ += 2;
+          break;
+        case 0x00A1:
+          if (!Keyboard::is_pressed(V_[X_]))
+            pc_ += 2;
+          break;
+      }
       break;
     case 0xF000:
       break;

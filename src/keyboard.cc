@@ -1,6 +1,6 @@
 #include "keyboard.hh"
 
-std::vector<int> Keyboard::input_ = std::vector<int> (knb_input);
+std::vector<bool> Keyboard::input_ = std::vector<bool> (knb_input);
 
 void Keyboard::key_callback(GLFWwindow* window,
                             int key,
@@ -14,7 +14,7 @@ void Keyboard::key_callback(GLFWwindow* window,
       glfwSetWindowShouldClose(window, GL_TRUE);
 
     if (key == GLFW_KEY_X)
-      input_[0x0] = action;
+      Keyboard::input_[0x0] = action;
     else if (key == GLFW_KEY_1)
       Keyboard::input_[0x1] = action;
     else if (key == GLFW_KEY_2)
@@ -46,4 +46,9 @@ void Keyboard::key_callback(GLFWwindow* window,
     else if (key == GLFW_KEY_V)
       Keyboard::input_[0xF] = action;
   }
+}
+
+bool Keyboard::is_pressed(int key)
+{
+  return Keyboard::input_[key] == GLFW_PRESS;
 }
