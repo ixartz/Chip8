@@ -54,8 +54,8 @@ void Chip8::emulate()
   NNN_ = opcode_ & 0x0FFF;
   NN_ = opcode_ & 0x00FF;
   N_ = opcode_ & 0x000F;
-  X_ = opcode_ & 0x0F00;
-  X_ = opcode_ & 0x00F0;
+  X_ = (opcode_ & 0x0F00) >> 8;
+  Y_ = (opcode_ & 0x00F0) >> 4;
 
   switch (opcode_ & 0xF000)
   {
