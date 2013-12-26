@@ -25,6 +25,8 @@ void Chip8::init()
   for (int i = 0; i < knb_register; ++i)
     V_[i] = 0;
 
+  screen_.clean();
+
   while (!stack_.empty())
     stack_.pop();
 

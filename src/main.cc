@@ -50,14 +50,14 @@ int main(int argc, char* argv[])
   chip.init();
   chip.load_from_rom(rom);
   glfwSetKeyCallback(window, Keyboard::key_callback);
+  glOrtho(0, 640, 480, 0, 0, 1);
 
   while (!glfwWindowShouldClose(window))
   {
-    chip.emulate();
+    //chip.emulate();
 
     glClear(GL_COLOR_BUFFER_BIT);
 
-    /*
     for (int j = 0; j < Screen::kframe_height; ++j)
       for (int i = 0; i < Screen::kframe_width; ++i)
       {
@@ -66,7 +66,6 @@ int main(int argc, char* argv[])
         else
           glColor3f(1.0f, 1.0f, 1.0f);
       }
-    */
 
     glfwSwapBuffers(window);
     glfwPollEvents();

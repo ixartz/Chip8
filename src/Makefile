@@ -1,5 +1,6 @@
-CC = g++
-CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++11 -g -ggdb
+CC = clang++
+CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++11 -O0 -g -ggdb
+INCLUDE = -I /opt/local/include
 LIBS = `pkg-config --cflags glfw3` `pkg-config --static --libs glfw3` -lglfw
 
 EXEC = chip8
@@ -10,7 +11,7 @@ all: $(OFILES)
 	$(CC) $(CXXFLAGS) $(LIBS) $^ -o $(EXEC)
 
 %.o: %.cc
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+	$(CC) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
 
 clean:
 	rm -f $(OFILES)
