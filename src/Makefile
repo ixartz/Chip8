@@ -11,3 +11,6 @@ all: $(OFILES)
 
 %.o: %.cc
 	$(CC) $(CXXFLAGS) -o $@ -c $<
+
+clean:
+	rm $(OFILES)
