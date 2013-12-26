@@ -1,5 +1,5 @@
 CC = g++
-CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++11
+CXXFLAGS = -W -Wall -Wextra -Werror -pedantic -std=c++11 -g -ggdb
 LIBS = `pkg-config --cflags glfw3` `pkg-config --static --libs glfw3` -lglfw
 
 EXEC = chip8

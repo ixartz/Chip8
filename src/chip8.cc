@@ -256,6 +256,8 @@ void Chip8::load_from_rom(Rom& r)
   int i = kmemory_start;
   rom_ = &r;
 
+  rom_->open_file();
+
   while (r >> memory_[i])
     ++i;
 }

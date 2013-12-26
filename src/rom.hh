@@ -11,6 +11,8 @@ public:
   Rom();
   Rom(std::string& filename);
   ~Rom();
+  void open_file();
+  Rom& operator=(const Rom& r);
   std::istream& operator>>(unsigned char& c);
 private:
   std::string filename_;

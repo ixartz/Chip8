@@ -23,9 +23,9 @@ int main(int argc, char* argv[])
   std::string game_name;
   Rom rom;
 
-  if (argc > 0)
+  if (argc > 1)
   {
-    game_name = std::string(argv[1]);
+    game_name = argv[1];
     rom = Rom(game_name);
   }
   else
