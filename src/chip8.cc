@@ -266,3 +266,8 @@ void Chip8::make_beep_()
 {
   std::cout << "\a" << std::endl;
 }
+
+unsigned char Chip8::get_pixel(int x, int y)
+{
+  return screen_(x, y);
+}

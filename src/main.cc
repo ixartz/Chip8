@@ -5,7 +5,6 @@
 #else
 #endif
 
-#include <iostream>
 #include <string>
 #include "rom.hh"
 #include "chip8.hh"
@@ -55,6 +54,20 @@ int main(int argc, char* argv[])
   while (!glfwWindowShouldClose(window))
   {
     chip.emulate();
+
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    /*
+    for (int j = 0; j < Screen::kframe_height; ++j)
+      for (int i = 0; i < Screen::kframe_width; ++i)
+      {
+        if (chip.get_pixel(i, j) == 0)
+          glColor3f(0.0f, 0.0f, 0.0f);
+        else
+          glColor3f(1.0f, 1.0f, 1.0f);
+      }
+    */
+
     glfwSwapBuffers(window);
     glfwPollEvents();
   }

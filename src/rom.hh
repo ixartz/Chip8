@@ -13,10 +13,13 @@ public:
   ~Rom();
   void open_file();
   Rom& operator=(const Rom& r);
-  std::istream& operator>>(unsigned char& c);
+  bool operator>>(unsigned char& c);
 private:
   std::string filename_;
   std::ifstream file_;
+  int pos_;
+  int size_;
+  char* buffer_ = NULL;
 };
 
 #endif

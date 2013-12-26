@@ -1,7 +1,6 @@
 #ifndef CHIP_8_HH
 # define CHIP_8_HH
 
-# include <iostream>
 # include <vector>
 # include <stack>
 # include "keyboard.hh"
@@ -20,6 +19,7 @@ public:
   void init();
   void emulate();
   void load_from_rom(Rom& r);
+  unsigned char get_pixel(int x, int y);
 private:
   void make_beep_();
 

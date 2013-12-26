@@ -11,13 +11,23 @@ Rom::Rom(std::string& filename)
 
 Rom::~Rom()
 {
+  if (buffer_)
+    delete[] buffer_;
 }
 
 void Rom::open_file()
 {
-  file_.open(filename_, std::ios::binary);
+  file_.open(filename_, std::ios::binary | std::ios::ate);
 
-  if (!file_.is_open())
+  if (file_.is_open())
+  {
+    pos_ = 0;
+    size_ = file_.tellg();
+    buffer_ = new char[size_];
+    file_.seekg(0, std::ios::beg);
+    file_.read(buffer_, size_);
+  }
+  else
   {
     std::cerr << "Error while opening the file \"" << filename_ << "\"" << std::endl;
   }
@@ -33,7 +43,9 @@ Rom& Rom::operator=(const Rom& r)
   return *this;
 }
 
-std::istream& Rom::operator>>(unsigned char& c)
+bool Rom::operator>>(unsigned char& c)
 {
-  return file_ >> c;
+  c = buffer_[pos_];
+  ++pos_;
+  return pos_ < size_;
 }

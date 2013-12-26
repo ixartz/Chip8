@@ -13,4 +13,4 @@ all: $(OFILES)
 	$(CC) $(CXXFLAGS) -o $@ -c $<
 
 clean:
-	rm $(OFILES)
+	rm -f $(OFILES)
