@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
   if (!glfwInit())
     exit(EXIT_FAILURE);
 
-  window = glfwCreateWindow(640, 480, "Chip 8", NULL, NULL);
+  window = glfwCreateWindow(640, 320, "Chip 8", NULL, NULL);
 
   if (!window)
   {
@@ -50,11 +50,11 @@ int main(int argc, char* argv[])
   chip.init();
   chip.load_from_rom(rom);
   glfwSetKeyCallback(window, Keyboard::key_callback);
-  glOrtho(0, 640, 480, 0, 0, 1);
+  glOrtho(0, 640, 320, 0, 0, 1);
 
   while (!glfwWindowShouldClose(window))
   {
-    //chip.emulate();
+    chip.emulate();
 
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -65,6 +65,13 @@ int main(int argc, char* argv[])
           glColor3f(0.0f, 0.0f, 0.0f);
         else
           glColor3f(1.0f, 1.0f, 1.0f);
+
+          glBegin(GL_QUADS);
+            glVertex3f((i * 10) + 0.0f,     (j * 10) + 0.0f,   0.0f);
+            glVertex3f((i * 10) + 0.0f,     (j * 10) + 10, 0.0f);
+            glVertex3f((i * 10) + 10, (j * 10) + 10, 0.0f);
+            glVertex3f((i * 10) + 10, (j * 10) + 0.0f,   0.0f);
+          glEnd();
       }
 
     glfwSwapBuffers(window);
