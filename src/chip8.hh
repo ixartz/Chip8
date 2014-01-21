@@ -40,7 +40,7 @@ private:
 
   std::vector<unsigned char> memory_;
   std::vector<unsigned char> V_;
-  std::stack<unsigned char> stack_;
+  std::stack<unsigned short> stack_;
 
   Screen screen_;
   Rom* rom_;

@@ -10,7 +10,7 @@ OFILES = ${SRC:.cc=.o}
 all: $(OFILES)
 	$(CC) $(CXXFLAGS) $(LIBS) $^ -o $(EXEC)
 
-%.o: %.cc
+%.o: %.cc %.hh
 	$(CC) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
 
 clean:
