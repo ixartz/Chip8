@@ -7,11 +7,20 @@ EXEC = chip8
 SRC = keyboard.cc rom.cc screen.cc chip8.cc main.cc
 OFILES = ${SRC:.cc=.o}
 
-all: $(OFILES)
-	$(CC) $(CXXFLAGS) $(LIBS) $^ -o $(EXEC)
+all: .depend $(OFILES)
+	$(CC) $(CXXFLAGS) $(LIBS) $(OFILES) -o $(EXEC)
 
-%.o: %.cc %.hh
+%.o: %.cc
 	$(CC) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
 
 clean:
+	rm -f .depend
 	rm -f $(OFILES)
+
+depend: .depend
+
+.depend: $(SRC)
+	rm -f .depend
+	$(CC) -MM $(INCLUDE) $^ > .depend
+
+include .depend
