@@ -3,6 +3,13 @@ Chip8
 
 A Chip-8 emulator written in C++
 
+# Screenshots
+
+![In game - pong](http://blog.ixartz.com/wp-content/uploads/pong.png)
+![Menu - space invaders](http://blog.ixartz.com/wp-content/uploads/space_invaders.png)
+![In game - space invaders](http://blog.ixartz.com/wp-content/uploads/space_invaders_in_game.png)
+![In game - tetris](http://blog.ixartz.com/wp-content/uploads/tetris.png)
+
 ## Useful links
 
 * [mattmik : Mastering CHIP-8](http://mattmik.com/chip8.html)
