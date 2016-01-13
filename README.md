@@ -5,10 +5,10 @@ A Chip-8 emulator written in C++
 
 # Screenshots
 
-![In game - pong](http://blog.ixartz.com/wp-content/uploads/pong.png)
-![Menu - space invaders](http://blog.ixartz.com/wp-content/uploads/space_invaders.png)
-![In game - space invaders](http://blog.ixartz.com/wp-content/uploads/space_invaders_in_game.png)
-![In game - tetris](http://blog.ixartz.com/wp-content/uploads/tetris.png)
+![In game - pong](http://ixartz.github.io/Chip8/pong.png)
+![Menu - space invaders](http://ixartz.github.io/Chip8/space_invaders.png)
+![In game - space invaders](http://ixartz.github.io/Chip8/space_invaders_in_game.png)
+![In game - tetris](http://ixartz.github.io/Chip8/tetris.png)
 
 ## Useful links
 
